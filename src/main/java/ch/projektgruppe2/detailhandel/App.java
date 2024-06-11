@@ -1,4 +1,4 @@
-package ch.detailhandel;
+package ch.projektgruppe2.detailhandel;
 
 /**
  * Hello world!

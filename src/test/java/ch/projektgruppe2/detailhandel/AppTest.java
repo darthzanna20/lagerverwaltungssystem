@@ -1,4 +1,4 @@
-package ch.detailhandel;
+package ch.projektgruppe2.detailhandel;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
