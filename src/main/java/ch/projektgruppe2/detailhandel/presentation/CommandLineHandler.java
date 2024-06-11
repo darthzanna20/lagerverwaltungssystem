@@ -1,7 +1,7 @@
 package ch.projektgruppe2.detailhandel.presentation;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import ch.projektgruppe2.detailhandel.business.BCProduct;
 import ch.projektgruppe2.detailhandel.business.Product;
 import ch.projektgruppe2.detailhandel.business.ProductFactory;
 
@@ -14,46 +14,45 @@ public class CommandLineHandler {
 
     public void handleCreateProduct() {
         Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Produkt Name: ");
+            String name = scanner.nextLine();
 
-        System.out.print("Produkt ID: ");
-        long id = scanner.nextLong();
-        scanner.nextLine();  
+            System.out.print("Produkt Beschreibung: ");
+            String description = scanner.nextLine();
 
-        System.out.print("Produkt Name: ");
-        String name = scanner.nextLine();
+            System.out.print("Produkt Inventar: ");
+            int inventory = scanner.nextInt();
 
-        System.out.print("Produkt Beschreibung: ");
-        String description = scanner.nextLine();
 
-        System.out.print("Produkt Inventar: ");
-        int inventory = scanner.nextInt();
-
-        Product product = new BCProduct();
-        product.setId(id);
-        product.setName(name);
-        product.setDescription(description);
-        product.setInventory(inventory);
-
-        productFactory.createProduct(product);
-
-        System.out.println("Produkt erfolgreich erstellt!");
+            Product product = productFactory.createProduct(name, description, inventory);
+            productFactory.saveProduct(product);
+            System.out.println("Produkt erfolgreich erstellt!" + product);
+        } catch (InputMismatchException e) {
+            System.out.println("Falsche Eingabe. Numerische Eingabe erwartet. Produkt Erstellung abgebrochen");
+        }
     }
 
     public void handleShowProduct() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Produkt ID anzeigen: ");
-        long id = scanner.nextLong();
+        System.out.print("Produkt ID: ");
+        try {
+            long id = scanner.nextLong();
 
-        Product product = productFactory.displayProduct(id);
-        if (product != null) {
-            System.out.println("Produkt ID: " + product.getId());
-            System.out.println("Produkt Name: " + product.getName());
-            System.out.println("Produkt Beschreibung: " + product.getDescription());
-            System.out.println("Produkt Inventar: " + product.getInventory());
-        } else {
-            System.out.println("Produkt nicht gefunden.");
+            Product product = productFactory.displayProduct(id);
+            if (product != null) {
+                System.out.println("Produkt ID: " + product.getId());
+                System.out.println("Produkt Name: " + product.getName());
+                System.out.println("Produkt Beschreibung: " + product.getDescription());
+                System.out.println("Produkt Inventar: " + product.getInventory());
+            } else {
+                System.out.println("Produkt nicht gefunden.");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Falsche Eingabe.");
         }
+        
     }
 
     public static void main(String[] args) {

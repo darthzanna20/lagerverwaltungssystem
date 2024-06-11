@@ -45,5 +45,15 @@ public class BCProduct implements Product {
     public int getInventory() {
         return inventory;
     }
+
+    @Override
+    public String toString() {
+        return "BCProduct{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", inventory=" + inventory +
+                '}';
+    }
 }
 

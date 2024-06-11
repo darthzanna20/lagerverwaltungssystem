@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductDaoMock implements ProductDao {
-    private final Map<Long, String[]> products = new HashMap<>();
+    private final Map<Long, Object[]> products = new HashMap<>();
 
     @Override
-    public void saveProduct(long id, String[] product) {
+    public void saveProduct(long id, Object... product) {
         products.put(id, product);
     }
 
     @Override
-    public String[] findProduct(long id) {
+    public Object[] findProduct(long id) {
         return products.get(id);
     }
 }
