@@ -60,6 +60,7 @@ public class CommandLineHandler {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            System.out.println("Sie haben folgende Möglichkeiten");
             System.out.println("1. Produkt erstellen");
             System.out.println("2. Produkt anzeigen");
             System.out.println("3. Beenden");
