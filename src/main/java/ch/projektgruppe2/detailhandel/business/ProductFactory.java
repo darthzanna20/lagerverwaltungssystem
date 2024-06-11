@@ -1,5 +1,8 @@
 package ch.projektgruppe2.detailhandel.business;
 
+import ch.projektgruppe2.detailhandel.persistence.ProductDao;
+import ch.projektgruppe2.detailhandel.persistence.ProductDaoFactory;
+
 public class ProductFactory {
     private static ProductFactory instance;
     private final ProductDao productDao;
